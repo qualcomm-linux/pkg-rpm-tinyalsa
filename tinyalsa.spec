@@ -1,11 +1,9 @@
 %global debug_package %{nil}
 %global commit      f78ed25aced2dfea743867b8205a787bfb091340
-%global shortcommit %(c=%{commit}; echo ${c:0:8})
-%global commitdate  20230918
 
 Name:           tinyalsa
-Version:        0^%{commitdate}git%{shortcommit}
-Release:        1%{?dist}
+Version:        2.0.0
+Release:        1.qcom%{?dist}
 Summary:        Tiny ALSA library for interfacing with Linux kernel ALSA
 License:        BSD-3-Clause
 URL:            https://github.com/tinyalsa/tinyalsa
@@ -58,5 +56,9 @@ that use the TinyALSA library.
 %{_libdir}/pkgconfig/tinyalsa.pc
 
 %changelog
+* Thu Sep 18 2026 Chiluka Rohith <rchiluka@qti.qualcomm.com> - 2.0.0-1.qcom
+- Use proper upstream version 2.0.0 with qcom release suffix to dominate EPEL
+- Drop Epoch, shortcommit and commitdate globals; keep commit hash for Source0
+
 * Wed Sep 18 2023 Qualcomm Linux <quic_linux@quicinc.com> - 0^20230918gitf78ed25a-1
 - Initial RPM packaging of tinyalsa for AudioReach components
