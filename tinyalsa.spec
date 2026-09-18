@@ -29,7 +29,7 @@ Development headers and pkg-config file for building applications
 that use the TinyALSA library.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{name}-%{commit}
 
 %build
 %meson -Ddocs=disabled -Dexamples=disabled -Dc_args="-DTINYALSA_USES_PLUGINS -fPIE"
