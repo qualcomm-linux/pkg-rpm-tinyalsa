@@ -1,13 +1,15 @@
 %global debug_package %{nil}
 %global commit      f78ed25aced2dfea743867b8205a787bfb091340
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global snapdate    20230918
 
 Name:           tinyalsa
 Version:        2.0.0
-Release:        1.qcom%{?dist}
+Release:        2.qcom^%{snapdate}git%{shortcommit}%{?dist}
 Summary:        Tiny ALSA library for interfacing with Linux kernel ALSA
 License:        BSD-3-Clause
 URL:            https://github.com/tinyalsa/tinyalsa
-Source0:        https://github.com/tinyalsa/tinyalsa/archive/%{commit}/%{name}-%{version}.tar.gz
+Source0:        %{url}/archive/%{commit}/%{name}-%{version}.tar.gz
 
 ExclusiveArch:  aarch64
 
@@ -56,6 +58,10 @@ that use the TinyALSA library.
 %{_libdir}/pkgconfig/tinyalsa.pc
 
 %changelog
+* Fri Sep 25 2026 Chiluka Rohith <rchiluka@qti.qualcomm.com> - 2.0.0-2.qcom^20230918gitf78ed25
+- The v2.0.0 tag omits attributes.h/plugin.h from installed headers,
+  which breaks downstream builds; this snapshot includes that fix
+
 * Thu Sep 18 2026 Chiluka Rohith <rchiluka@qti.qualcomm.com> - 2.0.0-1.qcom
 - Use proper upstream version 2.0.0 with qcom release suffix to dominate EPEL
 - Drop Epoch, shortcommit and commitdate globals; keep commit hash for Source0
